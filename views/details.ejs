@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>アイテム詳細</title>
+</head>
+<body>
+    <h1>アイテム詳細: <%= item.name %></h1>
+    <p>説明: <%= item.description %></p>
+    <p>価格: ¥<%= item.price %></p>
+    
+    <!-- 更新フォーム -->
+    <form action="/items/<%= item._id %>" method="post">
+        <input type="hidden" name="_method" value="put">
+        <!-- 名前編集フィールド -->
+        <label for="name">名前:</label>
+        <input type="text" id="name" name="name" value="<%= item.name %>"><br>
+
+        <!-- 説明編集フィールド -->
+        <label for="description">説明:</label>
+        <textarea id="description" name="description"><%= item.description %></textarea><br>
+
+        <!-- 価格編集フィールド -->
+        <label for="price">価格:</label>
+        <input type="number" id="price" name="price" value="<%= item.price %>"><br>
+
+        <button type="submit">更新</button>
+    </form>
+
+    <!-- 削除フォーム -->
+    <form action="/items/delete/<%= item._id %>" method="post">
+        <input type="hidden" name="_method" value="delete">
+        <button type="submit">削除</button>
+    </form>
+
+    <a href="/items">アイテム一覧に戻る</a>
+</body>
+</html>
